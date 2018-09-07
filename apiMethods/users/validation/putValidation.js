@@ -5,18 +5,18 @@ const { duplicatedUserCheck } = require('../_utils/process.js');
 
 const putValidation = async(req, res) => {
   try {
-    const invalidDataCheck_response = invalidDataCheck(req);
-    if (invalidDataCheck_response !== false) {
-      res.status(invalidDataCheck_response.status).json({
-        message: invalidDataCheck_response.message
+    const dataCheck_response = invalidDataCheck(req);
+    if (dataCheck_response !== false) {
+      res.status(dataCheck_response.status).json({
+        message: dataCheck_response.message
       });
       return false
     }
 
-    const error_duplication = await duplicatedUserCheck(req);
-    if (error_duplication !== false) {
-      res.status(error_duplication.status).json({
-        message: error_duplication.message
+    const duplicationCheck_response = await duplicatedUserCheck(req);
+    if (duplicationCheck_response !== false) {
+      res.status(duplicationCheck_response.status).json({
+        message: duplicationCheck_response.message
       });
       return false
     }
@@ -25,6 +25,6 @@ const putValidation = async(req, res) => {
   } catch (e) {
     throw e;
   }
-}
+};
 
 module.exports.putValidation = putValidation;
