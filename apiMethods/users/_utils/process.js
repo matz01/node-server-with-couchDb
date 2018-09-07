@@ -22,11 +22,7 @@ const duplicatedUserCheck = async (req) => {
     }
     return false;
   } catch (e) {
-    console.error(e)
-    return{
-      status: 500,
-      message: 'Server error'
-    };
+    throw e;
   }
 }
 
