@@ -14,12 +14,12 @@ const apiRouter = require('./api/apiRouter.js');
 app.use('/api', apiRouter);
 
 // PUBLIC
-app.use('/public', express.static('public'));
+app.use('/resources', express.static('public/resources'));
 
 // STATIC FILES
 const staticRouter = express.Router();
 staticRouter.get('/*', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.use('/', staticRouter);

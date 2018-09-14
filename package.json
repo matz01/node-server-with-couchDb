@@ -2,9 +2,9 @@
   "name": "gsac",
   "version": "1.0.0",
   "description": "couch db connection",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "initdb": "node init_couch.js",
     "test": "jest",
     "jest": "npm run test -- --watchAll"
