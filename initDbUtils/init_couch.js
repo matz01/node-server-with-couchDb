@@ -1,4 +1,4 @@
-const couch = require('./apiMethods/_utils/couchdb');
+const couch = require('../api/_utils/couchdb');
 const users = couch.use('users');
 
 console.log('file: init_couch.js')

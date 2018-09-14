@@ -1,18 +1,20 @@
 'use strict';
 require('dotenv').config();
 const express = require('express')
-const router = express.Router();
+const apiRouter = express.Router();
 const jwt = require('jsonwebtoken');
 
-// API METHODS
-const getUser = require('./apiMethods/users/get');
-const putUser = require('./apiMethods/users/put');
 
-router.route('/user')
+
+// API METHODS
+const getUser = require('./users/get');
+const putUser = require('./users/put');
+
+apiRouter.route('/user')
   .get((req, res) => getUser(req, res))
   .post((req, res) => putUser(req, res));
 
-router.route('/getauthdata')
+apiRouter.route('/getauthdata')
   .get(function (req, res) {
 
     const token = req.headers['x-access-token'];
@@ -29,7 +31,7 @@ router.route('/getauthdata')
     });
   });
 
-router.route('/auth')
+apiRouter.route('/auth')
   .post(function (req, res) {
     console.log('token cretated')
 
@@ -49,4 +51,4 @@ router.route('/auth')
 
   });
 
-module.exports = router;
+module.exports = apiRouter;

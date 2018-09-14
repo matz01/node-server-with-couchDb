@@ -6,12 +6,24 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 const port = process.env.PORT;        // set our port
 app.listen(port);
 
-const router = require('./router.js')
-app.use('/api', router);
+// API
+const apiRouter = require('./api/apiRouter.js');
+app.use('/api', apiRouter);
+
+// PUBLIC
+app.use('/public', express.static('public'));
+
+// STATIC FILES
+const staticRouter = express.Router();
+staticRouter.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.use('/', staticRouter);
+
 
 process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled Rejection at:', reason.stack || reason)
