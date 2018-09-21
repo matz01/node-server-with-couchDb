@@ -2,7 +2,7 @@
 const get = require('lodash/get');
 
 // UTILS
-const users = require('../_utils/couchdb').use('users');
+const users = require('../_appUtils/couchdb').use('users');
 const { putValidation } = require('./validation/putValidation');
 
 const put = async(req, res) => {

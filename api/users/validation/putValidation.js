@@ -1,4 +1,4 @@
-const users = require('../../_utils/couchdb').use('users');
+const users = require('../../_appUtils/couchdb').use('users');
 
 const { invalidDataCheck } = require('../_utils/utils.js');
 const { duplicatedUserCheck } = require('../_utils/process.js');

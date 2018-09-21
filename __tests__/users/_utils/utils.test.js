@@ -1,6 +1,6 @@
 const { invalidDataCheck } = require('../../../api/users/_utils/utils.js');
 
-describe('api/users/_utils/utils.verifyRequest\n' +
+describe('api/users/_appUtils/utils.verifyRequest\n' +
   'check correct data for adding user', () => {
 
   test('password = abcdefghi & user = 12345678\n' +

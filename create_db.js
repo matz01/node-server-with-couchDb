@@ -1,4 +1,4 @@
-const couch = require('./api/_utils/couchdb');
+const couch = require('./api/_appUtils/couchdb');
 
 couch.db.create('test2', function(err) {
   if (err && err.statusCode !== 412) {

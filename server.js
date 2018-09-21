@@ -14,7 +14,9 @@ const apiRouter = require('./api/apiRouter.js');
 app.use('/api', apiRouter);
 
 // PUBLIC
-app.use('/resources', express.static('public/resources'));
+app.use('/resources',
+  express.static(__dirname + '/public/resources')
+);
 
 // STATIC FILES
 const staticRouter = express.Router();
@@ -23,7 +25,6 @@ staticRouter.get('/*', function(req, res) {
 });
 
 app.use('/', staticRouter);
-
 
 process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled Rejection at:', reason.stack || reason)

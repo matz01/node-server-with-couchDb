@@ -1,4 +1,4 @@
-const couch = require('../../_utils/couchdb');
+const couch = require('../../_appUtils/couchdb');
 
 // LODASH
 const get = require('lodash/get');
