@@ -8,11 +8,11 @@ const jwt = require('jsonwebtoken');
 
 // API METHODS
 const getUser = require('./users/get');
-const putUser = require('./users/put');
+const postUser = require('./users/post');
 
 apiRouter.route('/user')
   .get((req, res) => getUser(req, res))
-  .post((req, res) => putUser(req, res));
+  .post((req, res) => postUser(req, res));
 
 
 

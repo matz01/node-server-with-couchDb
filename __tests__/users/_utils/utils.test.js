@@ -1,4 +1,5 @@
-const { invalidDataCheck } = require('../../../api/users/_utils/utils.js');
+const { userValidation } = require('../../../api/users/_utils/dataValidation');
+const HTTP_STATUS = require('../../../api/_appUtils/httpStatus');
 
 describe('api/users/_appUtils/utils.verifyRequest\n' +
   'check correct data for adding user', () => {
@@ -12,7 +13,7 @@ describe('api/users/_appUtils/utils.verifyRequest\n' +
       }
     };
 
-    expect(invalidDataCheck(data)).toBe(false);
+    expect(userValidation(data)).toBe(HTTP_STATUS.SUCCESS);
   });
 
   test('password = abcdefg & user = 1234567\n' +
@@ -28,7 +29,7 @@ describe('api/users/_appUtils/utils.verifyRequest\n' +
         message: "Incorrect request: user or password are too short",
         status: 400
       };
-    expect(invalidDataCheck(data)).toEqual(expected);
+    expect(userValidation(data)).toEqual(HTTP_STATUS.SUCCESS);
   });
 
   test('password = abcdefg & user = 1234567\n' +
@@ -41,7 +42,7 @@ describe('api/users/_appUtils/utils.verifyRequest\n' +
         message: "Missing mandatory fields",
         status: 400
       };
-    expect(invalidDataCheck(data)).toEqual(expected);
+    expect(userValidation(data)).toEqual(HTTP_STATUS.MISSING_PARAMETERS);
   });
 
 });

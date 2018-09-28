@@ -1,4 +1,5 @@
 const couch = require('../../_appUtils/couchdb');
+const { HTTP_STATUS } = require('../../_appUtils/httpStatus');
 
 // LODASH
 const get = require('lodash/get');
@@ -15,15 +16,13 @@ const duplicatedUserCheck = async (req) => {
   try{
     const response = await users.find(q)
     if(response.docs.length > 0) {
-      return{
-        status: 409,
-        message: 'User already exist'
-      };
+      return HTTP_STATUS.CONFLICT
     }
-    return false;
+    return HTTP_STATUS.SUCCESS;
   } catch (e) {
-    throw e;
+    console.error(e);
+    return HTTP_STATUS.GENERIC_ERROR;
   }
-}
+};
 
 module.exports.duplicatedUserCheck = duplicatedUserCheck;
