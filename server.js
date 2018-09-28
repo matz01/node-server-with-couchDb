@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-const port = process.env.PORT;        // set our port
+const port = process.env.PORT;
 app.listen(port);
 
 // API
@@ -23,9 +23,9 @@ const staticRouter = express.Router();
 staticRouter.get('/*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
-
 app.use('/', staticRouter);
 
+// NODE HANDLING ERROR
 process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled Rejection at:', reason.stack || reason)
   // Recommended: send the information to sentry.io
