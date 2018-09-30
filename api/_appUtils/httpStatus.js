@@ -18,6 +18,10 @@ const HTTP_STATUS = {
   GENERIC_ERROR: {
     CODE: 500,
     MSG: 'generic_error',
+  },
+  UNAUTHORIZED: {
+    CODE: 401,
+    MSG: 'unauthorized',
   }
 }
 

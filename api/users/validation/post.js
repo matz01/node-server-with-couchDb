@@ -10,7 +10,7 @@ const { isOk } = require('../../_appUtils/utils');
 const { userValidation } = require('../_utils/dataValidation');
 
 
-const postValidation = async(req, res) => {
+const post = async(req, res) => {
   const dataValidation = userValidation(get(req, 'body'));
   if(!isOk(dataValidation)) return dataValidation;
   try {
@@ -21,4 +21,4 @@ const postValidation = async(req, res) => {
   }
 };
 
-module.exports.postValidation = postValidation;
+module.exports.postValidation = post;

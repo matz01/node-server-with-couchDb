@@ -7,11 +7,8 @@ module.exports = createDbs;
 
 const dbs = [
   'users',
-  'weekly_expectation',
-  'monthly_expectation',
-  'salary_expectation',
-  'outgoings_types',
-  'months',
+  'accounts',
+  'families',
 ];
 
 
@@ -30,6 +27,8 @@ const createMainDb = async (dbName) => {
 function createDbs () {
   dbs.forEach(db => createMainDb(db))
 }
+
+createDbs();
 
 
 

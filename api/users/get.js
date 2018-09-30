@@ -1,6 +1,5 @@
 // LODASH
 const get = require('lodash/get');
-const jwt = require('jsonwebtoken');
 
 const { HTTP_STATUS } = require('../_appUtils/httpStatus');
 const { ArrangeResponse } = require('../_appUtils/utils');
@@ -24,23 +23,20 @@ const getUser = (req, res) => {
 const getUser = async(req, res) => {
   const arrangeResponse = new ArrangeResponse(USER_STATUS_DICTIONARY.GET, res);
   try {
+    const user = get(req, 'headers.user');
+    const password = get(req, 'headers.password');
     const q = {
       selector: {
-        user: { "$eq": get(req, 'headers.user')},
-        password: { "$eq": get(req, 'headers.password')},
+        user: { "$eq": user },
+        password: { "$eq": password },
       },
       limit:50
     };
 
     const getResponse = await users.find(q)
     if(get(getResponse, 'docs', []).length === 1){
-      const payload = {
-        user: get(req, 'headers.user')
-      };
-      const token = jwt.sign(payload, process.env.SECRET, {
-        expiresIn: '10 hours'
-      });
-      return arrangeResponse.response(HTTP_STATUS.SUCCESS, token);
+      setSessionLogin(user);
+      return arrangeResponse.response(HTTP_STATUS.SUCCESS);
     }
     return arrangeResponse.response(HTTP_STATUS.BAD_REQUEST);
   } catch (err) {
@@ -48,6 +44,11 @@ const getUser = async(req, res) => {
     return arrangeResponse.response(HTTP_STATUS.GENERIC_ERROR);
   }
 };
+
+setSessionLogin = (user) => {
+  apiSession.logged = true;
+  apiSession.user = user;
+}
 
 
 module.exports = getUser;

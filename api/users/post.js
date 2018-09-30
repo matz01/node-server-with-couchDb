@@ -4,7 +4,7 @@ const { USER_STATUS_DICTIONARY } = require('./_utils/userStatusDictionary');
 
 // UTILS
 const users = require('../_appUtils/couchdb').use('users');
-const { postValidation } = require('./validation/postValidation');
+const { postValidation } = require('./validation/post');
 const { isOk } = require('../_appUtils/utils');
 
 const post = async(req, res) => {
