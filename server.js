@@ -4,7 +4,13 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const app = express();
+var https = require('https')
+var http = require('http')
+var app = express()
+
+http.createServer(app).listen(80)
+https.createServer({}, app).listen(443)
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({
